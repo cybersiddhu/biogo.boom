@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"code.google.com/p/biogo.boom"
+	"github.com/cybersiddhu/biogo.boom"
 )
 
 func main() {
@@ -17,6 +17,7 @@ func main() {
 		if err != nil {
 			break
 		}
-		fmt.Printf("%d %s %d-%d (%d) %v %d %d %s %v Fl:%v %q\n", r.RefID(), r.Name(), r.Start(), r.End(), r.Len(), r.Cigar(), r.Strand(), r.Score(), r.Seq(), r.Quality(), r.Flags(), r.Tags())
+		//fmt.Printf("%d %s %d-%d (%d) %v %d %d %s %v Fl:%v %q\n", r.RefID(), r.Name(), r.Start(), r.End(), r.Len(), r.Cigar(), r.Strand(), r.Score(), r.Seq(), r.Quality(), r.Flags(), r.Tags())
+		fmt.Printf("%d %s %d\n",r.RefID(),r.Name(),r.Score())
 	}
 }

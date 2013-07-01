@@ -8,7 +8,6 @@ package boom
 // http://samtools.sourceforge.net/samtools/sam/index.html
 
 /*
-#cgo CFLAGS: -g -O2 -fPIC -m64 -pthread
 #cgo LDFLAGS: -lz
 #include "sam.h"
 #include "bam_endian.h"
