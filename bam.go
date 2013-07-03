@@ -4,9 +4,9 @@
 
 package boom
 
-import (
-	"os"
-)
+//import (
+//	"os"
+//)
 
 // A BAMFile represents a BAM (Binary Sequence Alignment/Map) file.
 type BAMFile struct {
@@ -19,17 +19,17 @@ var bWModes = [2]string{"wb", "wbu"}
 // If an error occurrs it is returned with a nil BAMFile pointer.
 // The valid values of mode and ref are described in the overview and are derived
 // from the samtools documentation.
-func OpenBAMFile(f *os.File, mode string, ref *Header) (b *BAMFile, err error) {
-	var h header
-	if ref != nil {
-		h = ref.bamHeader
-	}
-	sf, err := samFdOpen(f.Fd(), mode, h)
-	if err != nil {
-		return
-	}
-	return &BAMFile{sf}, nil
-}
+//func OpenBAMFile(f *os.File, mode string, ref *Header) (b *BAMFile, err error) {
+	//var h header
+	//if ref != nil {
+		//h = ref.bamHeader
+	//}
+	//sf, err := samFdOpen(f.Fd(), mode, h)
+	//if err != nil {
+		//return
+	//}
+	//return &BAMFile{sf}, nil
+//}
 
 // OpenBAM opens the file, filename as a BAM file.
 // If an error occurrs it is returned with a nil BAMFile pointer.

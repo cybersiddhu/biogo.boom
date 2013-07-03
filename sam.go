@@ -4,9 +4,9 @@
 
 package boom
 
-import (
-	"os"
-)
+//import (
+	//"os"
+//)
 
 // A SAMFile represents a SAM (text Sequence Alignment/Map) file.
 type SAMFile struct {
@@ -19,17 +19,17 @@ var tWModes = [2]string{"w", "wh"}
 // If an error occurrs it is returned with a nil SAMFile pointer.
 // The valid values of mode and ref are described in the overview and are
 // derived from the samtools documentation.
-func OpenSAMFile(f *os.File, mode string, ref *Header) (b *SAMFile, err error) {
-	var h header
-	if ref != nil {
-		h = ref.bamHeader
-	}
-	sf, err := samFdOpen(f.Fd(), mode, h)
-	if err != nil {
-		return
-	}
-	return &SAMFile{sf}, nil
-}
+//func OpenSAMFile(f *os.File, mode string, ref *Header) (b *SAMFile, err error) {
+	//var h header
+	//if ref != nil {
+		//h = ref.bamHeader
+	//}
+	//sf, err := samFdOpen(f.Fd(), mode, h)
+	//if err != nil {
+		//return
+	//}
+	//return &SAMFile{sf}, nil
+//}
 
 // OpenSAM opens the file, filename as a SAM file.
 // If an error occurrs it is returned with a nil SAMFile pointer.

@@ -358,40 +358,40 @@ func samOpen(filename, mode string, aux header) (sf *samFile, err error) {
 
 	return
 }
-func samFdOpen(fd uintptr, mode string, aux header) (sf *samFile, err error) {
-	m := C.CString(mode)
-	defer C.free(unsafe.Pointer(m))
+//func samFdOpen(fd uintptr, mode string, aux header) (sf *samFile, err error) {
+	//m := C.CString(mode)
+	//defer C.free(unsafe.Pointer(m))
 
-	var auxAddr unsafe.Pointer
-	switch a := aux.(type) {
-	case textHeader:
-		if len(a) > 0 {
-			auxAddr = unsafe.Pointer(&a[0])
-		} else {
-			auxAddr = nil
-		}
-	case stringHeader:
-		auxAddr = unsafe.Pointer(C.CString(string(a)))
-		defer C.free(unsafe.Pointer(auxAddr))
-	case *bamHeader:
-		auxAddr = unsafe.Pointer(a.bh)
-	default:
-		if aux == nil {
-			break
-		}
-		panic(fmt.Sprintf("boom: wrong type %T", aux))
-	}
+	//var auxAddr unsafe.Pointer
+	//switch a := aux.(type) {
+	//case textHeader:
+		//if len(a) > 0 {
+			//auxAddr = unsafe.Pointer(&a[0])
+		//} else {
+			//auxAddr = nil
+		//}
+	//case stringHeader:
+		//auxAddr = unsafe.Pointer(C.CString(string(a)))
+		//defer C.free(unsafe.Pointer(auxAddr))
+	//case *bamHeader:
+		//auxAddr = unsafe.Pointer(a.bh)
+	//default:
+		//if aux == nil {
+			//break
+		//}
+		//panic(fmt.Sprintf("boom: wrong type %T", aux))
+	//}
 
-	fp, err := C.samdopen(
-		C.int(fd),
-		(*C.char)(unsafe.Pointer(m)),
-		auxAddr,
-	)
-	sf = &samFile{fp: (*C.samfile_t)(unsafe.Pointer(fp))}
-	runtime.SetFinalizer(sf, (*samFile).samClose)
+	//fp, err := C.samdopen(
+		//C.int(fd),
+		//(*C.char)(unsafe.Pointer(m)),
+		//auxAddr,
+	//)
+	//sf = &samFile{fp: (*C.samfile_t)(unsafe.Pointer(fp))}
+	//runtime.SetFinalizer(sf, (*samFile).samClose)
 
-	return
-}
+	//return
+//}
 
 type bamTypeFlags int
 
@@ -697,7 +697,7 @@ const (
 	Secondary     Flags = secondary     // Not primary alignment.
 	QCFail        Flags = qCFail        // QC failure.
 	Duplicate     Flags = duplicate     // Optical or PCR duplicate.
-	Supplementary Flags = supplementary // Supplementary alignment, indicates alignment is part of a chimeric alignment.
+	//Supplementary Flags = supplementary // Supplementary alignment, indicates alignment is part of a chimeric alignment.
 )
 
 const (
@@ -712,7 +712,7 @@ const (
 	secondary     = C.BAM_FSECONDARY
 	qCFail        = C.BAM_FQCFAIL
 	duplicate     = C.BAM_FDUP
-	supplementary = C.BAM_FSUPP
+//	supplementary = C.BAM_FSUPP
 )
 
 // A Flags represents a BAM record's alignment FLAG field.
