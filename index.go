@@ -25,3 +25,33 @@ func LoadIndex(file string) (i *Index, err error) {
 	}
 	return
 }
+
+//Calculate coverage for the region on target sequence
+func (i *Index) Coverage(b *BAMFile, tid int, start int, end int) ([]int, error) {
+	 var coverage []int
+	 var locmap map[int]int = make(map[int]int)
+	 cb := func (r *Record) bool {
+			for start := r.Start(); start <= r.End(); start += 1 {
+				 if value, ok := locmap[start]; ok {
+				 		locmap[start] = value + 1
+				 }else {
+				 		locmap[start] = value
+				 }
+			}
+			return false
+	 }
+	 _,err := b.Fetch(i,tid, start, end, cb )
+	 if err != nil {
+	 		return nil, err
+	 }
+
+	 for pos := start ; pos <= end ; pos += 1 {
+			if value, ok := locmap[pos]; ok {
+				 coverage = append(coverage,value)
+			}else {
+				 coverage = append(coverage,0)
+			}
+	 }
+	 return coverage,nil
+}
+

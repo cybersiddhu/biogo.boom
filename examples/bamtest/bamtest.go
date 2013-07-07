@@ -45,10 +45,12 @@ func main() {
 	}
 
 	fmt.Println("Fetch:", chr, start, end)
+	m := make(map[int]int)
 
 	fn := func(r *boom.Record) (done bool) {
 		fmt.Printf("%d %s %d-%d (%d) %v %d %d %s %v Fl:%v %q\n", r.RefID(), r.Name(), r.Start(), r.End(), r.Len(), r.Cigar(), r.Strand(), r.Score(), r.Seq(), r.Quality(), r.Flags(), r.Tags())
-		return true // Only return the first one.
+		m[r.RefID()] = r.Start()
+		return false // Only return the first one.
 	}
 
 	i, err := boom.LoadIndex("test-sort.bam")
